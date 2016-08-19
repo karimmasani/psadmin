@@ -30871,16 +30871,16 @@ var About = React.createClass({displayName: "About",
             React.createElement("div", null, 
                 React.createElement("h1", null, "About"), 
                 React.createElement("p", null, 
-                    "This application uses the following technologies:", 
-                    React.createElement("ul", null, 
-                        React.createElement("li", null, "React"), 
-                        React.createElement("li", null, "React Router"), 
-                        React.createElement("li", null, "Flux"), 
-                        React.createElement("li", null, "Node"), 
-                        React.createElement("li", null, "Gulp"), 
-                        React.createElement("li", null, "Browserify"), 
-                        React.createElement("li", null, "Bootstrap")
-                    )
+                    "This application uses the following technologies:"
+                ), 
+                React.createElement("ul", null, 
+                    React.createElement("li", null, "React"), 
+                    React.createElement("li", null, "React Router"), 
+                    React.createElement("li", null, "Flux"), 
+                    React.createElement("li", null, "Node"), 
+                    React.createElement("li", null, "Gulp"), 
+                    React.createElement("li", null, "Browserify"), 
+                    React.createElement("li", null, "Bootstrap")
                 )
             )
         );
@@ -30890,6 +30890,31 @@ var About = React.createClass({displayName: "About",
 module.exports = About;
 
 },{"react":175}],177:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+var Header = React.createClass({displayName: "Header",
+    render: function() {
+        return (
+            React.createElement("nav", {className: "navbar navbar-default"}, 
+                React.createElement("div", {className: "container-fluid"}, 
+                    React.createElement("a", {href: "/", className: "navbar-brand"}, 
+                        React.createElement("img", {src: "images/pluralsight-logo.png"})
+                    ), 
+                    React.createElement("ul", {className: "nav navbar-nav"}, 
+                        React.createElement("li", null, React.createElement("a", {href: "/"}, "Home")), 
+                        React.createElement("li", null, React.createElement("a", {href: "/#about"}, "About"))
+                    )
+                )
+            )
+        );
+    }
+});
+
+module.exports = Header;
+
+},{"react":175}],178:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -30907,12 +30932,13 @@ var Home = React.createClass({displayName: "Home",
 
 module.exports = Home;
 
-},{"react":175}],178:[function(require,module,exports){
+},{"react":175}],179:[function(require,module,exports){
 $ = jQuery = require('jquery');
 var React = require('react');
 var ReactDom = require('react-dom');
 var Home = require('./components/homePage');
 var About = require('./components/about/aboutPage');
+var Header = require('./components/common/header');
 
 var App = React.createClass({displayName: "App",
     render: function() {
@@ -30925,6 +30951,7 @@ var App = React.createClass({displayName: "App",
 
         return (
             React.createElement("div", null, 
+                React.createElement(Header, null), 
                 React.createElement(Child, null)
             )
         );
@@ -30932,11 +30959,12 @@ var App = React.createClass({displayName: "App",
 });
 
 function render() {
+    console.log(route);
     var route = window.location.hash.substr(1);
     ReactDom.render(React.createElement(App, {route: route}), document.getElementById('app'));
 }
+$(window).on('hashchange', function (e) {
+    render();
+}).trigger('hashchange');
 
-window.addEventListener('hashChange', render);
-render();
-
-},{"./components/about/aboutPage":176,"./components/homePage":177,"jquery":1,"react":175,"react-dom":3}]},{},[178]);
+},{"./components/about/aboutPage":176,"./components/common/header":177,"./components/homePage":178,"jquery":1,"react":175,"react-dom":3}]},{},[179]);

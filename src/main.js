@@ -3,6 +3,7 @@ var React = require('react');
 var ReactDom = require('react-dom');
 var Home = require('./components/homePage');
 var About = require('./components/about/aboutPage');
+var Header = require('./components/common/header');
 
 var App = React.createClass({
     render: function() {
@@ -15,6 +16,7 @@ var App = React.createClass({
 
         return (
             <div>
+                <Header />
                 <Child />
             </div>
         );
@@ -22,9 +24,10 @@ var App = React.createClass({
 });
 
 function render() {
+    console.log(route);
     var route = window.location.hash.substr(1);
     ReactDom.render(<App route={route} />, document.getElementById('app'));
 }
-
-window.addEventListener('hashChange', render);
-render();
+$(window).on('hashchange', function (e) {
+    render();
+}).trigger('hashchange');
