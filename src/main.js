@@ -28,7 +28,6 @@ var Header = require('./components/common/header');
     });
 
     function render() {
-        console.log(route);
         var route = window.location.hash.substr(1);
         ReactDom.render(<App route={route} />, document.getElementById('app'));
     }
