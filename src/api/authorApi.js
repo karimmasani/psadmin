@@ -11,6 +11,10 @@ var _clone = function(item) {
     return JSON.parse(JSON.stringify(item));
 };
 
+var _indexOf = function(items) {
+    return null;
+}
+
 var AuthorApi = {
     getAllAuthors: function() {
         return _clone(authors);

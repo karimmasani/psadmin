@@ -2,14 +2,22 @@
 
 var React = require('react');
 
-var Router = require('react-router');
-var DefaultRoute = Router.DefaultRoute;
-var Route = Router.Route;
+var ReactRouter = require('react-router');
+var IndexRoute = ReactRouter.IndexRoute;
+var Route = ReactRouter.Route;
+var Redirect = ReactRouter.Redirect;
+
+var App = require('./components/app');
+var HomePage = require('./components/homePage');
+var AuthorPage = require('./components/authors/authorPage');
+var AboutPage = require('./components/about/aboutPage');
 
 var routes = (
-    <Route name="app" path="/" handler={require('./components/app')}>
-        <DefaultRoute handler={require('./components/homePage')} />
-        <Route name="authors" handler={require('./components/authors/authorPage')} />
-        <Route name="about" handler={require('./components/about/aboutPage')} />
+    <Route path="/" component={App}>
+        <IndexRoute component={HomePage} />
+        <Route path="about" component={AboutPage} />
+        <Route path="authors" component={AuthorPage} />
     </Route>
 );
+
+module.exports = routes;
